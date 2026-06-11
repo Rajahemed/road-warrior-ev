@@ -1,0 +1,161 @@
+{
+  "name": "Road Warrior EV Lead Automation",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "new-lead",
+        "responseMode": "onReceived",
+        "options": {}
+      },
+      "name": "Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [250, 300]
+    },
+    {
+      "parameters": {
+        "operation": "insert",
+        "table": "leads",
+        "dataMode": "autoMapInputData"
+      },
+      "name": "Supabase: Save Lead",
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [450, 300]
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "sheetId": "YOUR_GOOGLE_SHEET_ID",
+        "range": "A:H",
+        "options": {}
+      },
+      "name": "Google Sheets: Log Lead",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 2,
+      "position": [650, 300]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "number": [
+            {
+              "value1": "={{$json.referral_count}}",
+              "operation": "equal",
+              "value2": 1
+            },
+            {
+              "value1": "={{$json.referral_count}}",
+              "operation": "equal",
+              "value2": 5
+            },
+            {
+              "value1": "={{$json.referral_count}}",
+              "operation": "equal",
+              "value2": 10
+            },
+            {
+              "value1": "={{$json.referral_count}}",
+              "operation": "equal",
+              "value2": 25
+            }
+          ]
+        }
+      },
+      "name": "IF: Milestone Check",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [850, 300]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://graph.facebook.com/v16.0/YOUR_PHONE_NUMBER_ID/messages",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "whatsappApi",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            }
+          ]
+        },
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "messaging_product",
+              "value": "whatsapp"
+            },
+            {
+              "name": "to",
+              "value": "={{$json.phone}}"
+            },
+            {
+              "name": "type",
+              "value": "template"
+            },
+            {
+              "name": "template",
+              "value": "{\"name\":\"milestone_reached\",\"language\":{\"code\":\"en_US\"}}"
+            }
+          ]
+        }
+      },
+      "name": "WhatsApp Message",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 3,
+      "position": [1150, 200]
+    }
+  ],
+  "connections": {
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "Supabase: Save Lead",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Supabase: Save Lead": {
+      "main": [
+        [
+          {
+            "node": "Google Sheets: Log Lead",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Sheets: Log Lead": {
+      "main": [
+        [
+          {
+            "node": "IF: Milestone Check",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "IF: Milestone Check": {
+      "main": [
+        [
+          {
+            "node": "WhatsApp Message",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {}
+}

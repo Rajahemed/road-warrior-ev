@@ -1,0 +1,288 @@
+{
+  "riders": [
+    {
+      "full_name": "Raj",
+      "phone": "6360483386",
+      "city": "bangalore",
+      "platform": "Zomato",
+      "experience_years": 1,
+      "vehicle_type": "Petrol",
+      "vehicle_model": "hero",
+      "fuel_method": "Petrol Pump",
+      "weekly_expense": 500,
+      "maintenance_expense": 3999,
+      "accidental_insurance": "Yes",
+      "health_insurance": "Yes",
+      "open_to_ev": "Yes",
+      "interests": [
+        "EV Rental Offer"
+      ],
+      "preferred_language": "English",
+      "referred_by": "RW-1234",
+      "challenges": [
+        "High Fuel Cost",
+        "Battery Range Anxiety"
+      ],
+      "ev_challenges": [
+        "Battery Drains Too Fast"
+      ],
+      "petrol_challenges": [
+        "Fuel Price Too High"
+      ],
+      "out_of_pocket_accident": "Yes",
+      "referral_code": "RW-5492",
+      "segment": "Hot EV Lead",
+      "points": 20,
+      "referral_count": 2,
+      "qr_link": "qr_codes/RW-5492.png",
+      "password": "$2b$12$rfC9W/8OIaJphMcChyITQuUfOr1uNH1Tt.LR/S2OUTYD6/kgUVsPq"
+    },
+    {
+      "full_name": "simran",
+      "phone": "8110483620",
+      "city": "bangalore",
+      "platform": "Porter",
+      "experience_years": 0,
+      "vehicle_type": "Diesel",
+      "vehicle_model": "activa",
+      "fuel_method": "Petrol Pump",
+      "weekly_expense": 400,
+      "maintenance_expense": 4498,
+      "accidental_insurance": "Yes",
+      "health_insurance": "Yes",
+      "open_to_ev": "Already on EV",
+      "interests": [
+        "EV Rental Offer"
+      ],
+      "preferred_language": "English",
+      "referred_by": "RW-1234",
+      "challenges": [
+        "High Fuel Cost",
+        "Battery Range Anxiety"
+      ],
+      "ev_challenges": [
+        "Battery Drains Too Fast"
+      ],
+      "petrol_challenges": [
+        "Fuel Price Too High"
+      ],
+      "out_of_pocket_accident": "Yes",
+      "referral_code": "RW-7187",
+      "segment": "General Rider",
+      "points": 10,
+      "referral_count": 0,
+      "qr_link": "qr_codes/RW-7187.png"
+    },
+    {
+      "full_name": "Apsana",
+      "phone": "1234567891",
+      "city": "Mangalore",
+      "platform": "Porter",
+      "experience_years": 2,
+      "vehicle_type": "Electric",
+      "vehicle_model": "activa",
+      "fuel_method": "Battery Swapping",
+      "weekly_expense": 500,
+      "maintenance_expense": 3000,
+      "accidental_insurance": "No",
+      "health_insurance": "No",
+      "open_to_ev": "Already on EV",
+      "interests": [
+        "Insurance Quote",
+        "Retrofit Information"
+      ],
+      "preferred_language": "English",
+      "referred_by": "RW-5492",
+      "challenges": [
+        "High Fuel Cost",
+        "Battery Range Anxiety"
+      ],
+      "ev_challenges": [
+        "Battery Drains Too Fast"
+      ],
+      "petrol_challenges": [
+        "Fuel Price Too High"
+      ],
+      "out_of_pocket_accident": "No",
+      "referral_code": "RW-4766",
+      "segment": "Insurance Lead",
+      "points": 15,
+      "referral_count": 0,
+      "qr_link": "qr_codes/RW-4766.png"
+    },
+    {
+      "full_name": "King",
+      "phone": "6360483380",
+      "password": "$2b$12$GSKQ46aVAb.KgqcGyVq1g.MDxMV9R.BGIZtC341zXXdVf2WsBH91a",
+      "city": "bangalore",
+      "platform": "Dunzo",
+      "experience_years": 3,
+      "vehicle_type": "Petrol",
+      "vehicle_model": "Activa",
+      "fuel_method": "Petrol Pump",
+      "weekly_expense": 500,
+      "maintenance_expense": 3996,
+      "accidental_insurance": "Yes",
+      "health_insurance": "Yes",
+      "open_to_ev": "Yes",
+      "interests": [
+        "EV Rental Offer"
+      ],
+      "preferred_language": "English",
+      "referred_by": "RW-1232",
+      "challenges": [
+        "High Fuel Cost",
+        "Battery Range Anxiety"
+      ],
+      "ev_challenges": [
+        "Battery Drains Too Fast"
+      ],
+      "petrol_challenges": [
+        "Fuel Price Too High"
+      ],
+      "out_of_pocket_accident": "Yes",
+      "referral_code": "RW-1986",
+      "segment": "Hot EV Lead",
+      "points": 15,
+      "referral_count": 1,
+      "qr_link": "qr_codes/RW-1986.png"
+    },
+    {
+      "full_name": "Narmis",
+      "phone": "6360483381",
+      "password": "$2b$12$Yll6ifFnhYUuBkHpDt2blO1wLuiqQV/agUI4ZE35cZ569XG/LsK7e",
+      "city": "mangalore",
+      "platform": "Blinkit",
+      "experience_years": 2,
+      "vehicle_type": "Diesel",
+      "vehicle_model": "car",
+      "fuel_method": "Petrol Pump",
+      "weekly_expense": 3000,
+      "maintenance_expense": 10000,
+      "accidental_insurance": "Yes",
+      "health_insurance": "Yes",
+      "open_to_ev": "Yes",
+      "interests": [
+        "EV Rental Offer"
+      ],
+      "preferred_language": "English",
+      "referred_by": "RW-1986",
+      "challenges": [
+        "High Fuel Cost",
+        "Battery Range Anxiety"
+      ],
+      "ev_challenges": [
+        "Battery Drains Too Fast",
+        "Vehicle Not Powerful Enough"
+      ],
+      "petrol_challenges": [
+        "Fuel Price Too High",
+        "Frequent Engine Issues"
+      ],
+      "out_of_pocket_accident": "Yes",
+      "referral_code": "RW-6306",
+      "segment": "Hot EV Lead",
+      "points": 15,
+      "referral_count": 0,
+      "qr_link": "qr_codes/RW-6306.png"
+    },
+    {
+      "full_name": "Raja",
+      "phone": "6360483382",
+      "password": "$2b$12$LhWY3rPh.8cuoD3bdXz0Q.oq.uXImxYpsameaV5fdA.iVoV26jjUS",
+      "city": "Bangalore",
+      "platform": "Zomato",
+      "experience_years": 2,
+      "vehicle_type": "Petrol",
+      "vehicle_model": "Hero",
+      "fuel_method": "Petrol Pump",
+      "weekly_expense": 700,
+      "maintenance_expense": 3500,
+      "accidental_insurance": "Yes",
+      "health_insurance": "Yes",
+      "open_to_ev": "Yes",
+      "interests": [
+        "EV Rental Offer"
+      ],
+      "preferred_language": "English",
+      "referred_by": "RW-1234",
+      "challenges": [
+        "High Fuel Cost",
+        "Battery Range Anxiety"
+      ],
+      "ev_challenges": [
+        "Battery Drains Too Fast",
+        "Vehicle Not Powerful Enough"
+      ],
+      "petrol_challenges": [
+        "Fuel Price Too High",
+        "Frequent Engine Issues"
+      ],
+      "out_of_pocket_accident": "Yes",
+      "referral_code": "RW-5283",
+      "segment": "Hot EV Lead",
+      "points": 15,
+      "referral_count": 1,
+      "qr_link": "qr_codes/RW-5283.png"
+    },
+    {
+      "full_name": "jar",
+      "phone": "6360483383",
+      "password": "$2b$12$w4T1GZrbs7dzFBXlBuTAmuwdImZRK99b8t4/mHeXNSDJZnt7wsgXC",
+      "city": "mangalore",
+      "platform": "Swiggy",
+      "experience_years": 3,
+      "vehicle_type": "Electric",
+      "vehicle_model": "Activa",
+      "fuel_method": "Battery Swapping",
+      "weekly_expense": 500,
+      "maintenance_expense": 2500,
+      "accidental_insurance": "Yes",
+      "health_insurance": "Yes",
+      "open_to_ev": "Already on EV",
+      "interests": [
+        "EV Rental Offer"
+      ],
+      "preferred_language": "English",
+      "referred_by": "RW-5283",
+      "challenges": [
+        "High Fuel Cost",
+        "Battery Range Anxiety"
+      ],
+      "ev_challenges": [
+        "Battery Drains Too Fast"
+      ],
+      "petrol_challenges": [
+        "Fuel Price Too High"
+      ],
+      "out_of_pocket_accident": "Yes",
+      "referral_code": "RW-4321",
+      "segment": "EV Rider",
+      "points": 15,
+      "referral_count": 0,
+      "qr_link": "qr_codes/RW-4321.png"
+    }
+  ],
+  "referrals": [
+    {
+      "referrer_code": "RW-5492",
+      "referred_phone": "9999999999",
+      "points_awarded": 5
+    },
+    {
+      "referrer_code": "RW-5492",
+      "referred_phone": "1234567891",
+      "points_awarded": 5
+    },
+    {
+      "referrer_code": "RW-1986",
+      "referred_phone": "6360483381",
+      "points_awarded": 5
+    },
+    {
+      "referrer_code": "RW-5283",
+      "referred_phone": "6360483383",
+      "points_awarded": 5
+    }
+  ]
+}

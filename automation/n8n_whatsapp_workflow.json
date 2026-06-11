@@ -1,0 +1,105 @@
+{
+  "name": "Road Warrior EV WhatsApp Automation",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "webhook/whatsapp-inbound",
+        "options": {}
+      },
+      "name": "Webhook Inbound",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [250, 300],
+      "webhookId": "whatsapp-inbound"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "string": [
+            {
+              "value1": "={{$json.body.message}}",
+              "value2": "START"
+            }
+          ]
+        }
+      },
+      "name": "Check START",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [500, 300]
+    },
+    {
+      "parameters": {
+        "url": "https://api.fast2sms.com/dev/bulkV2",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "authorization",
+              "value": "YOUR_FAST2SMS_KEY"
+            }
+          ]
+        },
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            {
+              "name": "route",
+              "value": "q"
+            },
+            {
+              "name": "message",
+              "value": "Welcome to Road Warrior EV! Type MY SCORE to see your referrals, or EV INFO for switch options."
+            },
+            {
+              "name": "numbers",
+              "value": "={{$json.body.phone}}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "name": "Send Fast2SMS",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 3,
+      "position": [750, 200]
+    },
+    {
+      "parameters": {
+        "table": "users",
+        "operation": "getMany",
+        "limit": 1
+      },
+      "name": "Supabase Trigger (Registration)",
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [250, 500]
+    }
+  ],
+  "connections": {
+    "Webhook Inbound": {
+      "main": [
+        [
+          {
+            "node": "Check START",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Check START": {
+      "main": [
+        [
+          {
+            "node": "Send Fast2SMS",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {}
+}
