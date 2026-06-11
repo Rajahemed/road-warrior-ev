@@ -2,18 +2,19 @@ services:
   - type: web
     name: road-warrior-backend
     env: python
-    buildCommand: "pip install -r requirements.txt && alembic upgrade head"
-    startCommand: "uvicorn main:app --host 0.0.0.0 --port $PORT"
+    buildCommand: "cd backend && pip install -r requirements.txt"
+    buildCommand: "cd backend && pip install -r requirements.txt && alembic upgrade head"
+    startCommand: "cd backend && uvicorn main:app --host 0.0.0.0 --port $PORT"
     envVars:
-      - key: PYTHON_VERSION
-        value: 3.10.0
-      - key: DATABASE_URL
-        sync: false
       - key: SUPABASE_URL
         sync: false
       - key: SUPABASE_KEY
         sync: false
-      - key: FAST2SMS_API_KEY
+      - key: WHATSAPP_TOKEN
         sync: false
-      - key: JWT_SECRET
-        generateValue: true
+      - key: PHONE_NUMBER_ID
+        sync: false
+      - key: VERIFY_TOKEN
+        sync: false
+      - key: BASE_URL
+        sync: false
