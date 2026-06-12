@@ -1,5 +1,4 @@
 "use client"
-
 import { useState, useEffect } from "react"
 import { useRouter } from "next/navigation"
 import Link from "next/link"
@@ -10,33 +9,33 @@ import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle }
 import axios from "axios"
 import { Language, useTranslation } from "@/lib/i18n"
 import { useGoogleReCaptcha } from "react-google-recaptcha-v3"
-
 export default function LoginPage() {
   const router = useRouter()
   const { executeRecaptcha } = useGoogleReCaptcha()
   const [lang, setLang] = useState<Language>("en")
   const t = useTranslation(lang)
-
   useEffect(() => {
     const saved = localStorage.getItem("rw-lang") as Language
     if (saved && ["en", "hi", "kn"].includes(saved)) {
       setLang(saved)
     }
   }, [])
-
   const handleLangChange = (newLang: Language) => {
     setLang(newLang)
     localStorage.setItem("rw-lang", newLang)
   }
-
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState("")
   const [msg, setMsg] = useState("")
-
+  const getErrorMessage = (err: any, defaultMsg: string) => {
+    const detail = err.response?.data?.detail;
+    if (typeof detail === 'string') return detail;
+    if (Array.isArray(detail) && detail.length > 0) return detail[0]?.msg;
+    return defaultMsg;
+  }
   const [loginMethod, setLoginMethod] = useState<"password" | "otp">("password")
   const [otpSent, setOtpSent] = useState(false)
   const [resendTimer, setResendTimer] = useState(0)
-
   useEffect(() => {
     let interval: NodeJS.Timeout
     if (resendTimer > 0) {
@@ -51,16 +50,13 @@ export default function LoginPage() {
   const [password, setPassword] = useState("")
   const [otp, setOtp] = useState("")
   const [honeypot, setHoneypot] = useState("")
-
   const validatePhone = (phoneStr: string) => {
     return /^[6-9]\d{9}$/.test(phoneStr)
   }
-
   const getRecaptchaToken = async (action: string) => {
     if (!executeRecaptcha) return "dummy_token"
     return await executeRecaptcha(action)
   }
-
   const handlePasswordLogin = async (e: React.FormEvent) => {
     e.preventDefault()
     if (honeypot) return // Bot detected
@@ -69,11 +65,9 @@ export default function LoginPage() {
       setError("Please enter a valid 10-digit Indian mobile number.")
       return
     }
-
     setLoading(true)
     setError("")
     setMsg("")
-
     try {
       const token = await getRecaptchaToken("login_password")
       const res = await axios.post(`${process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000"}` + "/auth/login", { phone, password, recaptcha_token: token })
@@ -91,11 +85,11 @@ export default function LoginPage() {
       }
     } catch (err: any) {
       setError(err.response?.data?.detail || "Login failed. Check your password.")
+      setError(getErrorMessage(err, "Login failed. Check your password."))
     } finally {
       setLoading(false)
     }
   }
-
   const handleSendOTP = async () => {
     if (honeypot) return
     
@@ -113,11 +107,11 @@ export default function LoginPage() {
       setMsg("OTP sent successfully to your mobile number.")
     } catch (err: any) {
       setError(err.response?.data?.detail || "Failed to send OTP.")
+      setError(getErrorMessage(err, "Failed to send OTP."))
     } finally {
       setLoading(false)
     }
   }
-
   const handleVerifyOTP = async () => {
     if (honeypot) return
     if (!otp) {
@@ -143,11 +137,11 @@ export default function LoginPage() {
       }
     } catch (err: any) {
       setError(err.response?.data?.detail || "Invalid OTP.")
+      setError(getErrorMessage(err, "Invalid OTP."))
     } finally {
       setLoading(false)
     }
   }
-
   const handleForgotPassword = async () => {
     if (!phone) {
       setError("Please enter your mobile number to reset password.")
@@ -161,11 +155,11 @@ export default function LoginPage() {
       setMsg("A password reset link or OTP has been sent to your phone.")
     } catch (err: any) {
       setError(err.response?.data?.detail || "Phone number not registered.")
+      setError(getErrorMessage(err, "Phone number not registered."))
     } finally {
       setLoading(false)
     }
   }
-
   return (
     <Card className="w-full relative border-0 bg-transparent text-slate-800 shadow-none">
       <div className="absolute top-4 right-4 z-20">
@@ -205,7 +199,6 @@ export default function LoginPage() {
         <div style={{ display: 'none' }} aria-hidden="true">
           <input type="text" name="website_url" value={honeypot} onChange={(e) => setHoneypot(e.target.value)} tabIndex={-1} autoComplete="off" />
         </div>
-
         <div className="space-y-2">
           <Label htmlFor="phone" className="text-slate-700 font-medium">{t("mobile_number")}</Label>
           <Input 
@@ -217,7 +210,6 @@ export default function LoginPage() {
             className="bg-white border-slate-200 text-slate-900 placeholder:text-slate-400 focus-visible:ring-emerald-500/50 focus-visible:border-emerald-500 shadow-sm transition-all"
           />
         </div>
-
         {loginMethod === "password" && (
           <div className="space-y-2 animate-in fade-in duration-300">
             <div className="flex justify-between items-center">
@@ -241,7 +233,6 @@ export default function LoginPage() {
             </div>
           </div>
         )}
-
         {loginMethod === "otp" && otpSent && (
           <div className="space-y-2 animate-in fade-in slide-in-from-top-2 duration-300">
             <Label htmlFor="otp" className="text-slate-700 font-medium">{t("enter_otp")}</Label>
@@ -266,7 +257,6 @@ export default function LoginPage() {
           </div>
         )}
       </CardContent>
-
       <CardFooter className="flex flex-col space-y-4 pb-8">
         {loginMethod === "password" ? (
           <>
@@ -328,7 +318,6 @@ export default function LoginPage() {
             </Button>
           </>
         )}
-
         <div className="pt-6 text-sm text-center text-slate-500 w-full border-t border-slate-200">
           {t("new_rider")} 
           <Link 
