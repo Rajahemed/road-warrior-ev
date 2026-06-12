@@ -1,17 +1,14 @@
 "use client"
-
 import { useState } from "react"
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import axios from "axios"
-
 export default function ScorePage() {
   const [phone, setPhone] = useState("")
   const [stats, setStats] = useState<any>(null)
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState("")
-
   const handleSearch = async (e: React.FormEvent) => {
     e.preventDefault()
     setLoading(true)
@@ -21,12 +18,14 @@ export default function ScorePage() {
       setStats(res.data)
     } catch (err: any) {
       setError(err.response?.data?.detail || "Could not find score for this number.")
+      const detail = err.response?.data?.detail;
+      const errorMessage = typeof detail === 'string' ? detail : (Array.isArray(detail) && detail.length > 0 ? detail[0]?.msg : "Could not find score for this number.");
+      setError(errorMessage)
       setStats(null)
     } finally {
       setLoading(false)
     }
   }
-
   return (
     <div className="min-h-screen bg-gray-50 flex items-center justify-center p-4">
       <Card className="w-full max-w-md">
@@ -46,9 +45,7 @@ export default function ScorePage() {
               {loading ? "Searching..." : "Check Score"}
             </Button>
           </form>
-
           {error && <div className="mt-4 text-red-500 text-sm text-center">{error}</div>}
-
           {stats && (
             <div className="mt-6 space-y-4">
               <div className="bg-green-50 p-4 rounded-lg text-center border border-green-100">
