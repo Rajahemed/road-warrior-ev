@@ -14,7 +14,6 @@ export default function ScorePage() {
     setLoading(true)
     setError("")
     try {
-      const res = await axios.get(`http://localhost:8000/score/phone?q=${encodeURIComponent(phone)}`)
       const res = await axios.get(`${process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000"}/score/phone?q=${encodeURIComponent(phone)}`)
       setStats(res.data)
     } catch (err: any) {
